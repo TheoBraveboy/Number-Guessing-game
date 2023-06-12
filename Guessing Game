@@ -1,0 +1,45 @@
+import random
+from art import logo
+
+
+def guessing_game():
+  difficulty = 0
+  choice = True
+  exit_game = True
+  number = random.randrange(1, 100)
+
+  print(logo)
+  def choice():
+    tries = input("Welcome to the guessing game, Please pick a difficulty: e for 'easy'or h for 'hard'")
+    if tries == "e":
+      return 10 
+    else: 
+      return 5
+  
+  
+  def countdown(number):
+    global exit_game
+    global difficulty
+    difficulty = number - 1
+    if difficulty == 0:
+      exit_game = False
+    else:
+      return difficulty
+  
+  choice()
+  
+  while exit_game:
+    
+    guess_number = eval(input("Pick a number between 1 and 100: "))
+    if guess_number == number:
+      print("You win!!!!")
+      exit_game = False
+    elif guess_number > number:
+      print("Too High try again! ")
+      countdown(difficulty)
+      print(f"You Have {difficulty} tries left")
+    elif guess_number < number:
+      print("Too Low try again")
+      countdown(difficulty)
+      print(f"You Have {difficulty} tries left")
+guessing_game()    
